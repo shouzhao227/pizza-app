@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import { routes } from './routes';
+import { routes } from './routes'
+import axios from 'axios'
 
 Vue.use(VueRouter)
+
+axios.defaults.baseURL='https://wd2468178309upkmpi.wilddogio.com/'
 
 const router = new VueRouter({
   routes,
