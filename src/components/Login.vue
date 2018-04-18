@@ -30,41 +30,44 @@
 </template>
 
 <script>
-import axios from 'axios'
-	export default{
-		data(){
-			return{
-				email:'',
-				password:''
-			}
-		},
-		methods:{
-			onSubmit(){
-				axios.get('/users.json')
-        .then(res=>{
-          const data=res.data;
-          const users=[];
-          for(let key in data){
-            const user=data[key];
-            //console.log(user);
-            users.push(user);
-          }
-          //实现过滤
-            let result=users.filter((user)=>{
-              return user.email === this.email && user.password === this.password
-            })
-            //console.log(result);
-            //判断长度是否大于零
-            if(result!=null&&result.length>0){
-                this.$router.push({name:'homeLink'})
-            }else{
-              alert('账号密码错误！')
-            }
+import axios from 'axios';
+  export default{
+    data(){
+      return {
+        email:'',
+        password:''
+      }
+    },
+    methods:{
+      onSubmit(){
+        axios.get('/users.json')
+             .then(res => {
+              //  console.log(res.data)
+              const data = res.data
+              const users = []
+              for(let key in data){
+                const user = data[key]
+                // console.log(user)
+                users.push(user)
+              }
 
-        })
-			}
-		}
-	}
+              // console.log(users)
+
+              // 实现过滤
+              let result = users.filter((user) => {
+                return user.email === this.email && user.password === this.password
+              })
+
+              // console.log(result)
+              // 判断result的长度是否大于0
+              if(result != null && result.length > 0){
+                this.$router.push({name:"homeLink"})
+              }else{
+                alert("账号或密码错误!")
+              }
+             })
+      }
+    }
+  }
+
 </script>
-
-

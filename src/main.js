@@ -6,7 +6,10 @@ import axios from 'axios'
 
 Vue.use(VueRouter)
 
-axios.defaults.baseURL='https://wd2468178309upkmpi.wilddogio.com/'
+//配置默认根路径
+axios.defaults.baseURL = 'https://wd2468178309upkmpi.wilddogio.com/'
+//配置vue原型（在任何组件中都能使用axios）
+Vue.prototype.http=axios
 
 const router = new VueRouter({
   routes,
