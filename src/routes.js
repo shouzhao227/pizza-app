@@ -24,8 +24,8 @@ export const routes = [
   }},
   {path:'/menu',name:'menuLink',component:Menu},
   {path:'/admin',name:'adminLink',component:Admin},
-  {path:'/about',name:'aboutLink',component:About, children:[
-    {path:'/about/contact',name:"contactLink",component:Contact,children:[
+  {path:'/about',name:'aboutLink',component:About,redirect:'/about/contact', children:[
+    {path:'/about/contact',name:"contactLink",redirect:'/personname',component:Contact,children:[
       {path:'/phone',name:"phoneNumber",component:Phone},
       {path:'/personname',name:"personName",component:PersonName}
     ]},

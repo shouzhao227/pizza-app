@@ -54,6 +54,7 @@
     },
     methods:{
       addMenuItem(){
+        // console.log(this.newPizza)
         let data = {
           name:this.newPizza.name,
           description:this.newPizza.description,
@@ -69,7 +70,7 @@
           ]
         }
 
-        //axios vue-resource es6 fetch
+        // axios vue-resource es6 fetch
         // fetch("https://wd2468178309upkmpi.wilddogio.com/menu.json",{
         //   method:"POST",
         //   headers:{
@@ -81,8 +82,12 @@
         //   .then(data => this.$router.push({name:"menuLink"}))
         //   .catch(err => console.log(err))
 
+        // this.http.post("menu.json",data)
+        //          .then(res => this.$router.push({name:"menuLink"}))
+
+        // 数据同步到vuex中
         this.http.post("menu.json",data)
-                 .then(res => this.$router.push({name:"menuLink"}))
+                 .then(res => this.$store.commit("pushToMenuItems",data))
       }
     }
   }

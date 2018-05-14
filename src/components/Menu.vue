@@ -62,16 +62,22 @@
   </div>
 </template>
 <script>
-//import axios from 'axios'
+// import axios from 'axios'
   export default{
     data(){
       return{
         baskets:[],
         basketText:"购物车没有任何商品",
-        getMenuItems:{}
+        // getMenuItems:{}
       }
     },
     computed:{
+      getMenuItems(){
+        // 在vuex中获取数据
+        // return this.$store.state.menuItems
+        // 通过getters获取数据
+        return this.$store.getters.getMenuItems
+      },
       total(){
         let totalCost = 0
 
@@ -89,17 +95,22 @@
     methods:{
       fetchData(){
         // fetch("https://wd2468178309upkmpi.wilddogio.com/menu.json")
-        //  .then(res=>{
-        //   return res.json()
-        //  })
-        //  .then(data=>{
-        //     this.getMenuItems=data
-        //  })
-        // axios.get("menu.json")
-        // .then(res=>this.getMenuItems=res.data)
+        //   .then(res => {
+        //     return res.json()
+        //   })
+        //   .then(data => {
+        //     this.getMenuItems = data
+        //   })
 
+        // axios.get("menu.json")
+        //      .then(res => this.getMenuItems = res.data)
+
+        // this.http.get("menu.json")
+        //          .then(res => this.getMenuItems = res.data)
+
+        // 将请求下来的数据存储到vuex中
         this.http.get("menu.json")
-        .then(res=>this.getMenuItems=res.data)
+                 .then(res => this.$store.commit("setMenuItems",res.data))
       },
       addToBasket(item,option){
         let basket = {
